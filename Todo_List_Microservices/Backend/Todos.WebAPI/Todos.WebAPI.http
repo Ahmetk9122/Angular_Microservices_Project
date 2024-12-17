@@ -1,0 +1,6 @@
+@Todos.WebAPI_HostAddress = http://localhost:5108
+
+GET {{Todos.WebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
