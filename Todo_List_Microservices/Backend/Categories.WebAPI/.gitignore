@@ -1,0 +1,31 @@
+# Ignore DLL files
+*.dll
+
+# Ignore PDB files
+*.pdb
+
+# Ignore cache directories and files
+*.cache
+.cache/
+
+# Ignore any bin and obj directories (common in .NET projects)
+bin/
+obj/
+
+# Ignore build output from Visual Studio
+*.exe
+*.log
+
+# Ignore user-specific files from Visual Studio
+*.user
+*.suo
+.vscode/
+
+# Ignore temporary files
+*.tmp
+*.bak
+*.swp
+
+# Ignore coverage reports
+coverage/
+*.lcov

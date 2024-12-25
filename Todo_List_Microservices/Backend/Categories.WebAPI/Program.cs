@@ -1,9 +1,21 @@
+using Categories.WebAPI.Context;
+using Categories.WebAPI.Dtos;
+using Categories.WebAPI.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.SignalR.Protocol;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<ApplicationDbContext>(opt =>
+{
+    opt.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSql"));
+});
 
 var app = builder.Build();
 
@@ -16,29 +28,23 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
+app.MapGet("/categories/getall", async (ApplicationDbContext context, CancellationToken cancellationToken) =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+    var categories = await context.Categories.ToListAsync();
+    return categories;
+});
 
-app.MapGet("/weatherforecast", () =>
+app.MapPost("/categories/create", async (CreateCategoryDto createCategoryDto, ApplicationDbContext context, CancellationToken cancellationToken) =>
 {
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
+    bool isNameExists = await context.Categories.AnyAsync(x => x.Name == createCategoryDto.Name, cancellationToken);
+    if (isNameExists)
+        return Results.BadRequest(new { Message = "Category already exists!" });
+
+    Category category = new Category() { Name = createCategoryDto.Name };
+    await context.Categories.AddAsync(category, cancellationToken);
+    await context.SaveChangesAsync(cancellationToken);
+
+    return Results.Ok(new { Message = "Category create is successful" });
+});
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
