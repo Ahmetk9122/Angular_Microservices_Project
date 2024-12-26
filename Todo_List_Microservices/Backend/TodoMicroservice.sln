@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Todos.WebAPI", "Todos.WebAP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Categories.WebAPI", "Categories.WebAPI\Categories.WebAPI.csproj", "{D4EF773A-6A05-4C25-BEA2-9DEFB65BCD09}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice.Ocelot.Gateway", "Microservice.Ocelot.Gateway\Microservice.Ocelot.Gateway.csproj", "{DFAD02E3-93C7-491E-B647-2DF0B6728C1F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{D4EF773A-6A05-4C25-BEA2-9DEFB65BCD09}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4EF773A-6A05-4C25-BEA2-9DEFB65BCD09}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4EF773A-6A05-4C25-BEA2-9DEFB65BCD09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFAD02E3-93C7-491E-B647-2DF0B6728C1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFAD02E3-93C7-491E-B647-2DF0B6728C1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFAD02E3-93C7-491E-B647-2DF0B6728C1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFAD02E3-93C7-491E-B647-2DF0B6728C1F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

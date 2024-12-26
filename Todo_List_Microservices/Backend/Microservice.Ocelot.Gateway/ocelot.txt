@@ -1,0 +1,11 @@
+DownstreamPathTemplate : Path template ister
+=> deki {everything} todos dan sonraki tüm istekleri yapabilir 
+anlama geliyor.
+DownstreamScheme: İstek atılacak servisin http mi https mi olacağını beliliyoruz
+DownstreamHostAndPorts
+Host=> todos projesinin ayağa kalktığı hostu yazacağız
+Port=> todos projesinin ayağa kalktığı portu yazacağız bu bilgiler ilgili projenin 
+launchsettings.json unda yer almakta
+
+GlobalConfiguration içindeki BaseURL de Gateway'in ayağa kalktığı url bu url de 
+Microservice.Ocelot.Gateway içindeki launchsettings.json da yer almakta.
