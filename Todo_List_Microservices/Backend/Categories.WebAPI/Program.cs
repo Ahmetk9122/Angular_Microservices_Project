@@ -4,6 +4,7 @@ using Categories.WebAPI.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.SignalR.Protocol;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,4 +48,10 @@ app.MapPost("/categories/create", async (CreateCategoryDto createCategoryDto, Ap
     return Results.Ok(new { Message = "Category create is successful" });
 });
 
+// using (var scoped = app.Services.CreateScope())
+// {
+//     var srv = scoped.ServiceProvider;
+//     var context = srv.GetRequiredService<ApplicationDbContext>();
+//     context.Database.Migrate();
+// }
 app.Run();
